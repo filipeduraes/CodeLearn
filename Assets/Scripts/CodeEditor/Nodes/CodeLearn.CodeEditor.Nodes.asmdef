@@ -1,0 +1,16 @@
+{
+    "name": "CodeLearn.CodeEditor.Nodes",
+    "rootNamespace": "CodeLearn.CodeEditor.Nodes",
+    "references": [
+        "GUID:fc65402a96cc0084c8420217f3374c38"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
