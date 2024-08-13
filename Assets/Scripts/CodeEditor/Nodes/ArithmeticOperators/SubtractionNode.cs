@@ -1,18 +1,14 @@
-﻿using CodeLearn.CodeEditor;
-
-namespace CodeEditor.Nodes
+﻿namespace CodeEditor.Nodes
 {
-    public class SubtractionNode : OperatorNode<float>
+    public class SubtractionNode : BinaryOperatorNode<float, float>
     {
         public SubtractionNode(IValueNode<float> firstOperand, IValueNode<float> secondOperand) : base(firstOperand, secondOperand)
         {
         }
         
-        public override void Execute(MemoryModule memoryModule)
+        protected override float CalculateResult(float firstOperand, float secondOperand)
         {
-            firstOperand.Execute(memoryModule);
-            secondOperand.Execute(memoryModule);
-            result = firstOperand.GetResultValue() - secondOperand.GetResultValue();
+            return firstOperand - secondOperand;
         }
     }
 }
