@@ -32,7 +32,7 @@ namespace CodeLearn.UI.CodeEditor.View
 
             foreach (RaycastResult result in results)
             {
-                if (result.gameObject.TryGetComponent(out NodeContainer container) && nodeType == container.NodeType)
+                if (result.gameObject.TryGetComponent(out NodeContainer container) && (nodeType & container.NodeType) != 0)
                 {
                     _currentContainer = container;
                     _templateInstance.SetParent(container.ContainerParent);

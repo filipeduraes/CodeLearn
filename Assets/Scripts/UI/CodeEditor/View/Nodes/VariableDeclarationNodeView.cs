@@ -1,11 +1,12 @@
-﻿using CodeLearn.UI.CodeEditor.ViewModel;
+﻿using CodeEditor.Nodes;
+using CodeLearn.UI.CodeEditor.ViewModel;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
-    public class VariableDeclarationNodeView : MonoBehaviour, INodeView
+    public class VariableDeclarationNodeView : MonoBehaviour, INodeView, IBaseNodeView
     {
         [SerializeField] private Button numericTypeButton;
         [SerializeField] private Button logicTypeButton;
@@ -31,6 +32,27 @@ namespace CodeLearn.UI.CodeEditor.View
             numericTypeButton.onClick.RemoveListener(UpdateNumericClick);
             logicTypeButton.onClick.RemoveListener(UpdateLogicClick);
         }
+        public GetNodeResult TryGetNode()
+        {
+            return new GetNodeResult(new VariableDeclarationNode(_currentKey, _isNumeric ? 0f : false));
+        }
+        
+        public bool TryApplyNodeView()
+        {
+            _currentKey = variableNameInput.text;
+            int number = 0;
+
+            while(CodeEditorMemoryHolder.HasVariable($"{_currentKey}{number}"))
+                number++;
+            
+            _currentKey = $"{_currentKey}{number}";
+            variableNameInput.SetTextWithoutNotify(_currentKey);
+            
+            CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, _isNumeric ? typeof(float) : typeof(bool));
+            UpdateButtons();
+
+            return true;
+        }
         
         private void UpdateNumericClick()
         {
@@ -50,23 +72,6 @@ namespace CodeLearn.UI.CodeEditor.View
                 CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, typeof(bool));
                 UpdateButtons();
             }
-        }
-        
-        public bool TryApplyNodeView()
-        {
-            _currentKey = variableNameInput.text;
-            int number = 0;
-
-            while(CodeEditorMemoryHolder.HasVariable($"{_currentKey}{number}"))
-                number++;
-            
-            _currentKey = $"{_currentKey}{number}";
-            variableNameInput.SetTextWithoutNotify(_currentKey);
-            
-            CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, _isNumeric ? typeof(float) : typeof(bool));
-            UpdateButtons();
-
-            return true;
         }
 
         private void UpdateVariableName(string newName)

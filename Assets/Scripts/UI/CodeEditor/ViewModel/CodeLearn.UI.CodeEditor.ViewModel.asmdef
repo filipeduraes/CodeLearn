@@ -1,3 +1,6 @@
 {
-	"name": "CodeLearn.UI.CodeEditor.ViewModel"
+	"name": "CodeLearn.UI.CodeEditor.ViewModel",
+	"references": [
+		"GUID:fc65402a96cc0084c8420217f3374c38"
+	]
 }
