@@ -24,6 +24,9 @@ namespace CodeLearn.UI.CodeEditor.View
 
         public override bool TryApplyNodeView()
         {
+            if (transform.parent.childCount > 3)
+                return false;
+            
             if (transform.parent.TryGetComponent(out NodeContainer container))
                 return (container.NodeType & NodeType) != 0;
 
