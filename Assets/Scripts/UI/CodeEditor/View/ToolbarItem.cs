@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
@@ -9,10 +11,21 @@ namespace CodeLearn.UI.CodeEditor.View
         [SerializeField] private NodeType nodeType;
         [SerializeField] private RectTransform template;
         [SerializeField] private RectTransform parent;
+        [SerializeField] private Image background;
+        [SerializeField] private TMP_Text nodeName;
         
         private RectTransform _templateInstance;
         private CanvasGroup _instanceCanvasGroup;
         private NodeContainer _currentContainer;
+
+        public void Populate(NodeType type, string nodeName, RectTransform template, RectTransform parent, Color baseColor)
+        {
+            nodeType = type;
+            this.nodeName.SetText(nodeName);
+            this.template = template;
+            this.parent = parent;
+            background.color = baseColor;
+        }
 
         public void OnBeginDrag(PointerEventData eventData)
         {
@@ -53,7 +66,7 @@ namespace CodeLearn.UI.CodeEditor.View
             {
                 Destroy(_templateInstance.gameObject);
             }
-            else if(_templateInstance.TryGetComponent(out INodeView nodeView))
+            else if(_templateInstance.TryGetComponent(out NodeView nodeView))
             {
                 if(!nodeView.TryApplyNodeView())
                     Destroy(_templateInstance.gameObject);

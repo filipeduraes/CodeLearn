@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 43.85
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -172,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836062354067289874, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1836062354067289874, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -224,11 +224,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2504186085058232317, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_text
-      value: "OPERADOR L\xD3GICO"
+      value: "NUM\xC9RICO"
       objectReference: {fileID: 0}
     - target: {fileID: 2504186085058232317, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_fontSize
-      value: 18.75
+      value: 32.2
       objectReference: {fileID: 0}
     - target: {fileID: 7880517947157310100, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Name
@@ -236,15 +236,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Color.b
-      value: 0.13980058
+      value: 0.13697045
       objectReference: {fileID: 0}
     - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Color.g
-      value: 0.61758214
+      value: 0.5033776
       objectReference: {fileID: 0}
     - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Color.r
-      value: 0.6226415
+      value: 0.509434
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -274,6 +274,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33023a7aad1b456b969946c934be5eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 8
+  mainColor: {r: 0.50980395, g: 0.5019608, b: 0.13333334, a: 1}
+  groupName: "Operadores Num\xE9ricos"
+  nodeName: 
   operatorType: 0
 --- !u!224 &2328312761857638730 stripped
 RectTransform:

@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
-    public class GetVariableNodeView : MonoBehaviour, INodeView
+    public class GetVariableNodeView : NodeView
     {
         [SerializeField] private VariablesDropdown dropdown;
         public string Key => dropdown.Key;
         
-        public bool TryApplyNodeView()
+        public override bool TryApplyNodeView()
         {
             return CodeEditorMemoryHolder.GetVariableCount() > 0;
         }

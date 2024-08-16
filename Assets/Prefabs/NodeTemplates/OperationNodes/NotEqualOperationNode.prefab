@@ -10,7 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1336338571716566550, guid: 7ea90b250f44e2e47b2ddbbcb2ff9c5d, type: 3}
       propertyPath: m_Name
-      value: GreaterOperationNode
+      value: NotEqualOperationNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 1988566064920808450, guid: 7ea90b250f44e2e47b2ddbbcb2ff9c5d, type: 3}
+      propertyPath: m_text
+      value: "\u2260"
       objectReference: {fileID: 0}
     - target: {fileID: 7398738484507345808, guid: 7ea90b250f44e2e47b2ddbbcb2ff9c5d, type: 3}
       propertyPath: m_Pivot.x
@@ -94,11 +98,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9136466136688253125, guid: 7ea90b250f44e2e47b2ddbbcb2ff9c5d, type: 3}
       propertyPath: nodeName
-      value: '>'
+      value: "\u2260"
       objectReference: {fileID: 0}
     - target: {fileID: 9136466136688253125, guid: 7ea90b250f44e2e47b2ddbbcb2ff9c5d, type: 3}
       propertyPath: operatorType
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

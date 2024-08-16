@@ -1241,7 +1241,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836062354067289874, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1836062354067289874, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1291,6 +1291,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2504186085058232317, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_text
+      value: LER
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504186085058232317, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_fontSize
+      value: 32.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7880517947157310100, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Name
       value: VariableReadNode
@@ -1323,6 +1331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0aeafaf2aef74fe5897587e27e8e5524, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nodeType: 6
+  mainColor: {r: 0.16470589, g: 0.25882354, b: 0.18039216, a: 1}
+  groupName: "Vari\xE1veis"
+  nodeName: Ler
   dropdown: {fileID: 8394887763207101137}
 --- !u!224 &2194400183222641406 stripped
 RectTransform:

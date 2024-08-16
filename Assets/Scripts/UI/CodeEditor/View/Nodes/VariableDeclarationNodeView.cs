@@ -6,11 +6,14 @@ using UnityEngine.UI;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
-    public class VariableDeclarationNodeView : MonoBehaviour, INodeView, IBaseNodeView
+    public class VariableDeclarationNodeView : NodeView, IBaseNodeView
     {
+        [Header("Declaration")]
         [SerializeField] private Button numericTypeButton;
         [SerializeField] private Button logicTypeButton;
         [SerializeField] private TMP_InputField variableNameInput;
+        
+        [Header("Colors")]
         [SerializeField] private Color enabledColor;
         [SerializeField] private Color disabledColor;
 
@@ -37,7 +40,7 @@ namespace CodeLearn.UI.CodeEditor.View
             return new GetNodeResult(new VariableDeclarationNode(_currentKey, _isNumeric ? 0f : false));
         }
         
-        public bool TryApplyNodeView()
+        public override bool TryApplyNodeView()
         {
             _currentKey = variableNameInput.text;
             int number = 0;

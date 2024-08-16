@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1336338571716566550, guid: c68c9c0765c269343a25699a7b3b5fd6, type: 3}
       propertyPath: m_Name
-      value: LogicOperationNode
+      value: ANDOperationNode
       objectReference: {fileID: 0}
     - target: {fileID: 7398738484507345808, guid: c68c9c0765c269343a25699a7b3b5fd6, type: 3}
       propertyPath: m_Pivot.x
@@ -91,6 +91,10 @@ PrefabInstance:
     - target: {fileID: 7398738484507345808, guid: c68c9c0765c269343a25699a7b3b5fd6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9136466136688253125, guid: c68c9c0765c269343a25699a7b3b5fd6, type: 3}
+      propertyPath: nodeName
+      value: E
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
-    public class VariableAssignmentNodeView : MonoBehaviour, INodeView, IBaseNodeView
+    public class VariableAssignmentNodeView : NodeView, IBaseNodeView
     {
         [SerializeField] private TMP_Dropdown dropdown;
         [SerializeField] private NodeContainer container;
@@ -23,7 +23,7 @@ namespace CodeLearn.UI.CodeEditor.View
             dropdown.onValueChanged.RemoveListener(UpdateContainerFromDropdown);
         }
         
-        public bool TryApplyNodeView()
+        public override bool TryApplyNodeView()
         {
             bool hasDeclaredVariables = CodeEditorMemoryHolder.GetVariableCount() > 0;
             

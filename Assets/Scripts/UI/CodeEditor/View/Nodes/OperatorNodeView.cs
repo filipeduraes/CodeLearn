@@ -1,11 +1,10 @@
-﻿using System;
-using CodeEditor.Nodes;
+﻿using CodeEditor.Nodes;
 using CodeLearn.CodeEditor;
 using UnityEngine;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
-    public class OperatorNodeView : MonoBehaviour, INodeView
+    public class OperatorNodeView : NodeView
     {
         [SerializeField] private OperatorType operatorType;
 
@@ -26,7 +25,7 @@ namespace CodeLearn.UI.CodeEditor.View
             NotEqual
         }
         
-        public bool TryApplyNodeView()
+        public override bool TryApplyNodeView()
         {
             return transform.parent.childCount == 2;
         }

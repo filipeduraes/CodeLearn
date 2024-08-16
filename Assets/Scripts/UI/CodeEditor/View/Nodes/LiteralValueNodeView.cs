@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
-    public class LiteralValueNodeView : MonoBehaviour
+    public class LiteralValueNodeView : NodeView
     {
         [SerializeField] private TMP_InputField numericValueField;
         [SerializeField] private Toggle logicValueField;
@@ -20,6 +20,14 @@ namespace CodeLearn.UI.CodeEditor.View
                 return new LogicalLiteralNode(logicValueField.isOn);
 
             return null;
+        }
+
+        public override bool TryApplyNodeView()
+        {
+            if (transform.parent.TryGetComponent(out NodeContainer container))
+                return (container.NodeType & NodeType) != 0;
+
+            return false;
         }
     }
 }
