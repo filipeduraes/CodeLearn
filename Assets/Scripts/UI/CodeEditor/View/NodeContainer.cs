@@ -61,9 +61,9 @@ namespace CodeLearn.UI.CodeEditor.View
             {
                 if (leftValueNode is IValueNode<float> leftNumericValue && rightValueNode is IValueNode<float> rightNumericValue)
                 {
-                    if((nodeType & NodeType.NumericValue) != 0)
+                    if((nodeType & NodeType.NumericOperator) != 0)
                         operandNode = operatorNodeView.CreateNumericOperationNode(leftNumericValue, rightNumericValue);
-                    else if ((nodeType & NodeType.LogicValue) != 0)
+                    else if ((nodeType & NodeType.LogicOperator) != 0)
                         operandNode = operatorNodeView.CreateComparisonNode(leftNumericValue, rightNumericValue);
                 }
                 else if (leftValueNode is IValueNode<bool> leftLogicValue && rightValueNode is IValueNode<bool> rightLogicValue)

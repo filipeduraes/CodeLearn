@@ -16,6 +16,6 @@ namespace CodeLearn.UI.CodeEditor.View
         public Color MainColor => mainColor;
         public NodeType NodeType => nodeType;
 
-        public abstract bool TryApplyNodeView();
+        public virtual bool TryApplyNodeView() => true;
     }
 }

@@ -1,26 +1,25 @@
 ﻿using System;
 using CodeEditor.Nodes;
 using CodeLearn.UI.CodeEditor.ViewModel;
-using TMPro;
 using UnityEngine;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
     public class VariableAssignmentNodeView : NodeView, IBaseNodeView
     {
-        [SerializeField] private TMP_Dropdown dropdown;
+        [SerializeField] private VariablesDropdown dropdown;
         [SerializeField] private NodeContainer container;
 
         private void OnEnable()
         {
             CodeEditorMemoryHolder.OnVariableListChanged += UpdateContainer;
-            dropdown.onValueChanged.AddListener(UpdateContainerFromDropdown);
+            dropdown.OnValueChanged += UpdateContainer;
         }
 
         private void OnDisable()
         {
             CodeEditorMemoryHolder.OnVariableListChanged -= UpdateContainer;
-            dropdown.onValueChanged.RemoveListener(UpdateContainerFromDropdown);
+            dropdown.OnValueChanged -= UpdateContainer;
         }
         
         public override bool TryApplyNodeView()
@@ -43,19 +42,14 @@ namespace CodeLearn.UI.CodeEditor.View
             if (TryGetVariableType(out Type variableType))
             {
                 if (variableType == typeof(float) && nodeResult.resultNode is IValueNode<float> numericValueNode)
-                    return new GetNodeResult(new VariableAssignmentNode<float>(GetVariableKey(), numericValueNode));
+                    return new GetNodeResult(new VariableAssignmentNode<float>(dropdown.Key, numericValueNode));
                 if (variableType == typeof(bool) && nodeResult.resultNode is IValueNode<bool> logicValueNode)
-                    return new GetNodeResult(new VariableAssignmentNode<bool>(GetVariableKey(), logicValueNode));
+                    return new GetNodeResult(new VariableAssignmentNode<bool>(dropdown.Key, logicValueNode));
 
                 return new GetNodeResult(GetNodeResult.ErrorType.TypeMismatch);
             }
 
             return new GetNodeResult(GetNodeResult.ErrorType.VariableNotDeclared);
-        }
-
-        private void UpdateContainerFromDropdown(int index)
-        {
-            UpdateContainer();
         }
 
         private void UpdateContainer()
@@ -71,19 +65,13 @@ namespace CodeLearn.UI.CodeEditor.View
 
         private bool TryGetVariableType(out Type type)
         {
-            string key = GetVariableKey();
-            bool hasVariable = CodeEditorMemoryHolder.HasVariable(key);
+            bool hasVariable = CodeEditorMemoryHolder.HasVariable(dropdown.Key);
             type = null;
 
             if (hasVariable)
-                type = CodeEditorMemoryHolder.GetVariableType(key);
+                type = CodeEditorMemoryHolder.GetVariableType(dropdown.Key);
 
             return hasVariable;
-        }
-
-        private string GetVariableKey()
-        {
-            return dropdown.options[dropdown.value].text;
         }
     }
 }
