@@ -1639,7 +1639,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7311360927078621781}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.99999994
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2889,8 +2889,8 @@ RectTransform:
   - {fileID: 6894300817016596787}
   m_Father: {fileID: 6255133567563856636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.45, y: 0}
-  m_AnchorMax: {x: 0.6, y: 1}
+  m_AnchorMin: {x: 0.35, y: 0}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3230,7 +3230,6 @@ RectTransform:
   m_Children:
   - {fileID: 6182974669116199660}
   - {fileID: 2051857374171054429}
-  - {fileID: 838754069221104641}
   - {fileID: 8169392278804907205}
   - {fileID: 7965154792138490583}
   m_Father: {fileID: 0}
@@ -3422,7 +3421,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 6256312275817106908}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5899867
+  m_Size: 0.8852459
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4347,12 +4346,12 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1265343000343513064}
-  m_Father: {fileID: 6255133567563856636}
+  m_Father: {fileID: 6182974669116199660}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.58, y: 0.45}
-  m_AnchorMax: {x: 0.6, y: 0.55}
+  m_AnchorMin: {x: -0.03, y: 0.45}
+  m_AnchorMax: {x: 0.01, y: 0.55}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.0000047683716, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6826496516880380155
 CanvasRenderer:
@@ -5742,9 +5741,10 @@ RectTransform:
   m_Children:
   - {fileID: 4779719525400435772}
   - {fileID: 5876152312173958640}
+  - {fileID: 838754069221104641}
   m_Father: {fileID: 6255133567563856636}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.6, y: 0}
+  m_AnchorMin: {x: 0.55, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
