@@ -90,10 +90,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nodeType: 1
-  template: {fileID: 7398738484507345808, guid: 384bd00f670ef6e48a3fc2aecc9e72ec, type: 3}
+  template: {fileID: 1070429981549047375, guid: 384bd00f670ef6e48a3fc2aecc9e72ec, type: 3}
   parent: {fileID: 0}
   background: {fileID: 9049237799934926260}
   nodeName: {fileID: 4272103251758851077}
+  destroyOnDrag: 0
+  rootParent: {fileID: 0}
 --- !u!1 &5046637014691611418
 GameObject:
   m_ObjectHideFlags: 0

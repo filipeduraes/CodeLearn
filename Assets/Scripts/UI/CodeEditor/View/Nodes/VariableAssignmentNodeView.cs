@@ -24,10 +24,14 @@ namespace CodeLearn.UI.CodeEditor.View
         
         public override bool TryApplyNodeView()
         {
-            bool hasDeclaredVariables = CodeEditorMemoryHolder.GetVariableCount() > 0;
-            
+            bool hasDeclaredVariables = CodeEditorMemoryHolder.GetVariableCountAtLine(transform.GetSiblingIndex()) > 0;
+
             if (hasDeclaredVariables)
+            {
+                dropdown.SetCodeLineGetter(() => transform.GetSiblingIndex());
+                dropdown.Populate();
                 UpdateContainer();
+            }
             
             return hasDeclaredVariables;
         }
@@ -61,11 +65,15 @@ namespace CodeLearn.UI.CodeEditor.View
                 else if (variableType == typeof(bool))
                     container.SetNodeType(NodeType.NumericValue | NodeType.LogicValue | NodeType.LogicOperator);
             }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         private bool TryGetVariableType(out Type type)
         {
-            bool hasVariable = CodeEditorMemoryHolder.HasVariable(dropdown.Key);
+            bool hasVariable = CodeEditorMemoryHolder.HasVariableAtLine(dropdown.Key, transform.GetSiblingIndex());
             type = null;
 
             if (hasVariable)

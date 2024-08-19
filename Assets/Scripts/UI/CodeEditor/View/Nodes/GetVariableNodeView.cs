@@ -10,7 +10,16 @@ namespace CodeLearn.UI.CodeEditor.View
         
         public override bool TryApplyNodeView()
         {
-            return CodeEditorMemoryHolder.GetVariableCount() > 0;
+            NodeView parentNodeView = transform.parent.GetComponentInParent<NodeView>();
+            bool canGet = CodeEditorMemoryHolder.GetVariableCountAtLine(parentNodeView.transform.GetSiblingIndex()) > 0;
+
+            if (canGet)
+            {
+                dropdown.SetCodeLineGetter(() => parentNodeView.transform.GetSiblingIndex());
+                dropdown.Populate();
+            }
+            
+            return canGet;
         }
     }
 }

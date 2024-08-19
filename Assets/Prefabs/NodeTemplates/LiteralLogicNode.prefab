@@ -336,6 +336,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LiteralLogicNode
       objectReference: {fileID: 0}
+    - target: {fileID: 8563826771336275702, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: rootParent
+      value: 
+      objectReference: {fileID: 975487536230664944}
     - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Color.b
       value: 0.63529414

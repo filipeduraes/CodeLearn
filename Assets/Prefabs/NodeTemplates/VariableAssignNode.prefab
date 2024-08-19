@@ -565,6 +565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   containerParent: {fileID: 4050997054610740610}
   nodeType: 1
+  checkHorizontal: 1
 --- !u!1 &4423942858485370170
 GameObject:
   m_ObjectHideFlags: 0
@@ -1569,6 +1570,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VariableAssignNode
       objectReference: {fileID: 0}
+    - target: {fileID: 8563826771336275702, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: rootParent
+      value: 
+      objectReference: {fileID: 5017309497791206287}
     - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Color.b
       value: 0.18039216

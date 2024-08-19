@@ -1,3 +1,4 @@
+using System;
 using CodeEditor.Nodes;
 using CodeLearn.CodeEditor;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace CodeLearn.UI.CodeEditor.View
     {
         [SerializeField] private RectTransform containerParent;
         [SerializeField] private NodeType nodeType;
+        [SerializeField] private bool checkHorizontal;
 
         public RectTransform ContainerParent => containerParent;
         public NodeType NodeType => nodeType;
@@ -100,6 +102,58 @@ namespace CodeLearn.UI.CodeEditor.View
                 return new VariableGetNode<bool>(getVariableNodeView.Key);
 
             return null;
+        }
+
+        public void FitNodeView(Transform nodeView, Vector2 mousePosition)
+        {
+            Func<float> getMousePosition = checkHorizontal ? () => mousePosition.x : () => mousePosition.y;
+            Func<int, float> getChildPosition = checkHorizontal ? index => ContainerParent.GetChild(index).position.x : index => ContainerParent.GetChild(index).position.y;
+            
+            int index = FindBestIndexForNodeView(getMousePosition, getChildPosition);
+            nodeView.SetParent(ContainerParent);
+
+            if(index >= 0)
+                nodeView.SetSiblingIndex(index);
+        }
+
+        private int FindBestIndexForNodeView(Func<float> getMousePosition, Func<int, float> getChildPosition)
+        {
+            if (ContainerParent.childCount == 0)
+                return 0;
+            
+            if (checkHorizontal ? getMousePosition() < getChildPosition(0) : getMousePosition() > getChildPosition(0))
+                return 0;
+            
+            if (checkHorizontal ? getMousePosition() > getChildPosition(ContainerParent.childCount - 1) : getMousePosition() < getChildPosition(ContainerParent.childCount - 1))
+                return ContainerParent.childCount;
+
+            int leftIndex = 0;
+            int rightIndex = containerParent.childCount - 1;
+            int closestIndex = -1;
+            float closestIndexDistance = float.MaxValue;
+
+            while (leftIndex <= rightIndex)
+            {
+                int middleIndex = (leftIndex + rightIndex) / 2;
+                float nodeDistance = Mathf.Abs(getChildPosition(middleIndex) - getMousePosition());
+
+                if (nodeDistance < closestIndexDistance)
+                {
+                    closestIndex = middleIndex;
+                    closestIndexDistance = nodeDistance;
+                }
+
+                if (checkHorizontal ? getChildPosition(middleIndex) > getMousePosition() : getChildPosition(middleIndex) < getMousePosition())
+                {
+                    rightIndex = middleIndex - 1;
+                }
+                else
+                {
+                    leftIndex = middleIndex + 1;
+                }
+            }
+
+            return closestIndex;
         }
     }
 }

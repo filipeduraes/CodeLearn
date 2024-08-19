@@ -28,20 +28,38 @@ namespace CodeLearn.UI.CodeEditor.View
             logicTypeButton.onClick.AddListener(UpdateLogicClick);
         }
 
-
         private void OnDisable()
         {
             variableNameInput.onEndEdit.RemoveListener(UpdateVariableName);
             numericTypeButton.onClick.RemoveListener(UpdateNumericClick);
             logicTypeButton.onClick.RemoveListener(UpdateLogicClick);
         }
+
+        private void OnDestroy()
+        {
+            if(!string.IsNullOrEmpty(_currentKey))
+                CodeEditorMemoryHolder.ClearVariable(_currentKey);
+        }
+
         public GetNodeResult TryGetNode()
         {
             return new GetNodeResult(new VariableDeclarationNode(_currentKey, _isNumeric ? 0f : false));
         }
-        
+
+        public override void CopyTo(NodeView newNode)
+        {
+            if (newNode is VariableDeclarationNodeView variableDeclarationNodeView)
+            {
+                variableDeclarationNodeView._currentKey = _currentKey;
+                variableDeclarationNodeView._isNumeric = _isNumeric;
+            }
+        }
+
         public override bool TryApplyNodeView()
         {
+            if (_currentKey != null)
+                return true;
+            
             _currentKey = variableNameInput.text;
             int number = 0;
 
@@ -51,18 +69,18 @@ namespace CodeLearn.UI.CodeEditor.View
             _currentKey = $"{_currentKey}{number}";
             variableNameInput.SetTextWithoutNotify(_currentKey);
             
-            CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, _isNumeric ? typeof(float) : typeof(bool));
+            CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, () => transform.GetSiblingIndex(), _isNumeric ? typeof(float) : typeof(bool));
             UpdateButtons();
 
             return true;
         }
-        
+
         private void UpdateNumericClick()
         {
             if (!_isNumeric)
             {
                 _isNumeric = true;
-                CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, typeof(float));
+                CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, () => transform.GetSiblingIndex(), typeof(float));
                 UpdateButtons();
             }
         }
@@ -72,14 +90,14 @@ namespace CodeLearn.UI.CodeEditor.View
             if (_isNumeric)
             {
                 _isNumeric = false;
-                CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, typeof(bool));
+                CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, () => transform.GetSiblingIndex(), typeof(bool));
                 UpdateButtons();
             }
         }
 
         private void UpdateVariableName(string newName)
         {
-            CodeEditorMemoryHolder.SetVariable(_currentKey, newName, _isNumeric ? typeof(float) : typeof(bool));
+            CodeEditorMemoryHolder.SetVariable(_currentKey, newName, () => transform.GetSiblingIndex(), _isNumeric ? typeof(float) : typeof(bool));
             _currentKey = newName;
         }
 

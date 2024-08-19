@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -7,18 +8,15 @@ namespace CodeLearn.UI.CodeEditor.ViewModel
     public class VariablesDropdown : MonoBehaviour
     {
         [SerializeField] private TMP_Dropdown dropdown;
+        
+        private Func<int> _getCodeLine;
+        
         public event Action OnValueChanged = delegate { };
         
         public string Key { get; private set; }
 
-        private void Awake()
-        {
-            Populate();
-        }
-
         private void OnEnable()
         {
-            UpdateKey(dropdown.value);
             dropdown.onValueChanged.AddListener(UpdateKey);
             CodeEditorMemoryHolder.OnVariableListChanged += Populate;
         }
@@ -29,11 +27,17 @@ namespace CodeLearn.UI.CodeEditor.ViewModel
             CodeEditorMemoryHolder.OnVariableListChanged -= Populate;
         }
 
-        private void Populate()
+        public void SetCodeLineGetter(Func<int> getCodeLine)
+        {
+            _getCodeLine = getCodeLine;
+        }
+
+        public void Populate()
         {
             dropdown.options.Clear();
+            IEnumerable<string> variableKeysDeclared = CodeEditorMemoryHolder.GetVariableKeysDeclaredAtLine(_getCodeLine());
             
-            foreach (string variableKey in CodeEditorMemoryHolder.GetVariableKeys())
+            foreach (string variableKey in variableKeysDeclared)
                 dropdown.options.Add(new TMP_Dropdown.OptionData(variableKey));
             
             dropdown.RefreshShownValue();
@@ -42,6 +46,9 @@ namespace CodeLearn.UI.CodeEditor.ViewModel
         
         private void UpdateKey(int position)
         {
+            if(dropdown.options.Count == 0)
+                return;
+            
             Key = dropdown.options[position].text;
             OnValueChanged();
         }

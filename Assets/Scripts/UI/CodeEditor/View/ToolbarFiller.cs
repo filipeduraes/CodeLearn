@@ -37,7 +37,7 @@ namespace CodeLearn.UI.CodeEditor.View
                 foreach (NodeView view in views)
                 {
                     ToolbarItem toolbarItem = Instantiate(toolbarItemPrefab, toolbarArea);
-                    toolbarItem.Populate(view.NodeType, view.NodeName, view.transform as RectTransform, dragArea, view.MainColor);
+                    toolbarItem.Populate(view.NodeType, view.NodeName, view, dragArea, view.MainColor);
                 }
             }
         }

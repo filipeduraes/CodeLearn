@@ -17,5 +17,7 @@ namespace CodeLearn.UI.CodeEditor.View
         public NodeType NodeType => nodeType;
 
         public virtual bool TryApplyNodeView() => true;
+        
+        public virtual void CopyTo(NodeView newNode) {}
     }
 }
