@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using static CodeLearn.SnakeGame.SnakeGame;
 using Random = UnityEngine.Random;
 
 namespace CodeLearn.SnakeGame

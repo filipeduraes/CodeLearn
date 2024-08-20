@@ -737,6 +737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SnakeGame
       objectReference: {fileID: 0}
+    - target: {fileID: 986813999906799545, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1685485710352008436, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: SnakeBodyLine
       value: 
@@ -821,6 +825,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4955990646738504523, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: snakeBody
       value: 
@@ -848,6 +856,10 @@ PrefabInstance:
     - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: snakeStartPosition.y
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7667573122229529629, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
