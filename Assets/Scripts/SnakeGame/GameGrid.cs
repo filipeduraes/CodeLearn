@@ -6,12 +6,14 @@ namespace CodeLearn.SnakeGame
     {
         [SerializeField] private float cellSize = 1f;
 
-        public Vector2 ConvertIndexToWorldPosition(int x, int y)
-        {
-            float positionX = transform.position.x + x * cellSize + cellSize / 2;
-            float positionY = transform.position.y + y * cellSize + cellSize / 2;
+        public int GridSize { get; } = 10;
 
-            return new Vector2(positionX,positionY);
+        public Vector3 ConvertIndexToWorldPosition(Vector2Int index)
+        {
+            float positionX = transform.position.x + index.x * cellSize + cellSize / 2;
+            float positionY = transform.position.y + index.y * cellSize + cellSize / 2;
+
+            return new Vector3(positionX,positionY, transform.position.z - 1);
         }
 
         private void OnDrawGizmosSelected()
@@ -22,7 +24,7 @@ namespace CodeLearn.SnakeGame
             {
                 for (int y = 0; y < 10; y++)
                 {
-                    Vector2 center = ConvertIndexToWorldPosition(x, y);
+                    Vector2 center = ConvertIndexToWorldPosition(new Vector2Int(x, y));
                     Gizmos.DrawWireSphere(center,0.3f);
                 }
             }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using static CodeLearn.SnakeGame.SnakeGame;
 using Random = UnityEngine.Random;
 
 namespace CodeLearn.SnakeGame
@@ -14,48 +15,49 @@ namespace CodeLearn.SnakeGame
         Collide = 8,
     }
 
-
-
     public class SnakeGame
     {
         public Vector2Int Direction { get; set; }
-        private Vector2Int _apple;
-        private List<Vector2Int> _snake;
+        public Vector2Int Apple { get; private set; }
+        public List<Vector2Int> Snake { get; private set; }
         private int _gridSize;
 
         public delegate void SnakeColliding();
         public static event SnakeColliding OnSnakeCollision = delegate { };
 
+        public delegate void SnakeGrowing();
+        public static event SnakeGrowing OnSnakeGrow = delegate { };
+
         public SnakeGame(List<Vector2Int> snakePositions,Vector2Int applePosition, int gridSize)
         {
-            _snake = snakePositions;
-            _apple = applePosition;
+            Snake = snakePositions;
+            Apple = applePosition;
             _gridSize = gridSize;
         }
 
         public void Tick()
         {
-            Vector2Int newHead = _snake[0] + Direction;
+            Vector2Int newHead = Snake[0] + Direction;
 
             CheckCollisions(newHead);
 
-            for (int i = _snake.Count - 2; i >= 0 ; i--)
+            for (int i = Snake.Count - 2; i >= 0 ; i--)
             {
-                _snake[i + 1] = _snake[i];
+                Snake[i + 1] = Snake[i];
             }
 
-            _snake[0] = newHead;
+            Snake[0] = newHead;
         }
 
         private void CheckCollisions(Vector2Int headPosition)
         {
-            if (headPosition == _apple)
+            if (headPosition == Apple)
             {
                 GrowSnake();
                 RandomizeApple();
             }
 
-            if (_snake.Contains(headPosition) || IsOutsideBoard(headPosition))
+            if (Snake.Contains(headPosition) || IsOutsideBoard(headPosition))
             {
                 OnSnakeCollision();
             }
@@ -68,7 +70,8 @@ namespace CodeLearn.SnakeGame
 
         private void GrowSnake()
         {
-            _snake.Add(_snake[_snake.Count - 1]);
+            Snake.Add(Snake[Snake.Count - 1]);
+            OnSnakeGrow();
         }
 
         private void RandomizeApple()
@@ -77,17 +80,13 @@ namespace CodeLearn.SnakeGame
             int newAppleY = Random.Range(0, _gridSize);
             Vector2Int newApple = new Vector2Int(newAppleX, newAppleY);
 
-            if (_snake.Contains(newApple))
+            if (Snake.Contains(newApple))
             {
                 RandomizeApple();
                 return;
             }
 
-            _apple = newApple;
+            Apple = newApple;
         }
-
-
-
-
     }
 }
