@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CodeLearn.SnakeGame
 {
-    public class NewBehaviourScript : MonoBehaviour
+    public class SnakeGameView : MonoBehaviour
     {
         [SerializeField] private Transform apple;
         [SerializeField] private SnakeBody snakeBody;
