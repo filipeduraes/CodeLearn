@@ -1,3 +1,9 @@
 {
-	"name": "CodeLearn.UI.CodeEditor.View"
+	"name": "CodeLearn.UI.CodeEditor.View",
+	"references": [
+		"GUID:6055be8ebefd69e48b49212b09b47b2f",
+		"GUID:d56738ed4ee7d624691082dee5d07cab",
+		"GUID:fc65402a96cc0084c8420217f3374c38",
+		"GUID:ac94162680814785b478ad0bcd7d81cb"
+	]
 }

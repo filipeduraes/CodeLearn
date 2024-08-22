@@ -16,11 +16,13 @@ namespace CodeEditor.Nodes
         
         public void Execute(MemoryModule memoryModule)
         {
-            if (!_condition.GetResultValue()) 
-                return;
-            
-            foreach (ICodeNode codeNode in _codeBlock)
-                codeNode.Execute(memoryModule);
+            _condition.Execute(memoryModule);
+
+            if (_condition.GetResultValue())
+            {
+                foreach (ICodeNode codeNode in _codeBlock)
+                    codeNode.Execute(memoryModule);
+            }
         }
     }
 }

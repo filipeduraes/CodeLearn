@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using CodeEditor.Nodes;
 using CodeEditor.Nodes.Literals;
 using NUnit.Framework;
+using UnityEngine;
 
 namespace CodeLearn.CodeEditor.Tests
 {
