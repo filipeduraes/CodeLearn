@@ -150,7 +150,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 30
   m_fontStyle: 1
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -195,10 +195,9 @@ GameObject:
   m_Component:
   - component: {fileID: 259056463805857736}
   - component: {fileID: 8718500246849504247}
-  - component: {fileID: 7643751499421513992}
   - component: {fileID: 16516422857803538}
   m_Layer: 5
-  m_Name: VariableName
+  m_Name: NumberField
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,7 +216,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5721251364174325732}
-  m_Father: {fileID: 2194400183222641406}
+  m_Father: {fileID: 2328312761857638730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -232,36 +231,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7382936394557286938}
   m_CullTransparentMesh: 1
---- !u!114 &7643751499421513992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7382936394557286938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.3827316, g: 0.38679248, b: 0.10399608, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &16516422857803538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +271,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 7643751499421513992}
+  m_TargetGraphic: {fileID: 538896094301605190}
   m_TextViewport: {fileID: 5721251364174325732}
   m_TextComponent: {fileID: 6635493870069756488}
   m_Placeholder: {fileID: 0}
@@ -398,7 +367,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1836062354067289874, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 70
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 1836062354067289874, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -448,20 +417,81 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2504186085058232317, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_text
+      value: "NUM\xC9RICO"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2504186085058232317, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_fontSize
+      value: 32.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7880517947157310100, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       propertyPath: m_Name
       value: LiteralNumberNode
       objectReference: {fileID: 0}
+    - target: {fileID: 8563826771336275702, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: rootParent
+      value: 
+      objectReference: {fileID: 7662460886462552863}
+    - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.13333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.50980395
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7035338258904962684, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6888622414972843464, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 259056463805857736}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7880517947157310100, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7662460886462552863}
   m_SourcePrefab: {fileID: 100100000, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
---- !u!224 &2194400183222641406 stripped
+--- !u!114 &538896094301605190 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8695345511613741508, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+  m_PrefabInstance: {fileID: 9211718898246186114}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1336338571716566550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7880517947157310100, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+  m_PrefabInstance: {fileID: 9211718898246186114}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7662460886462552863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1336338571716566550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e07e13f3bd540f8b32491f3048dc2fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeType: 2
+  mainColor: {r: 0.50980395, g: 0.5019608, b: 0.13333334, a: 1}
+  groupName: LITERAIS
+  nodeName: "Num\xE9rico"
+  numericValueField: {fileID: 16516422857803538}
+  logicValueField: {fileID: 0}
+--- !u!224 &2328312761857638730 stripped
 RectTransform:
-  m_CorrespondingSourceObject: {fileID: 7035338258904962684, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6888622414972843464, guid: 4aba2964b91d5a848bdfaf53b241f3b6, type: 3}
   m_PrefabInstance: {fileID: 9211718898246186114}
   m_PrefabAsset: {fileID: 0}

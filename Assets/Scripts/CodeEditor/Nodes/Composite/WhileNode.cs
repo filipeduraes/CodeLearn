@@ -16,10 +16,14 @@ namespace CodeEditor.Nodes
         
         public void Execute(MemoryModule memoryModule)
         {
+            _condition.Execute(memoryModule);
+            
             while (_condition.GetResultValue())
             {
                 foreach (ICodeNode codeNode in _codeBlock)
                     codeNode.Execute(memoryModule);
+                
+                _condition.Execute(memoryModule);
             } 
         }
     }

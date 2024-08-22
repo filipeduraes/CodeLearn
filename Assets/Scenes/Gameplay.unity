@@ -843,7 +843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: appleStartPosition.x
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: appleStartPosition.y
@@ -855,7 +855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: snakeStartPosition.y
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7667573122229529629, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: m_IsActive
