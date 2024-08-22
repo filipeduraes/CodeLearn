@@ -24,11 +24,12 @@ namespace CodeLearn.UI.CodeEditor.View
         
         public override bool TryApplyNodeView()
         {
-            bool hasDeclaredVariables = CodeEditorMemoryHolder.GetVariableCountAtLine(transform.GetSiblingIndex()) > 0;
+            container.SetParentNode(this);
+            bool hasDeclaredVariables = CodeEditorMemoryHolder.GetVariableCountAtLine(InitialIndex) > 0;
 
             if (hasDeclaredVariables)
             {
-                dropdown.SetCodeLineGetter(() => transform.GetSiblingIndex());
+                dropdown.SetCodeLineGetter(() => InitialIndex);
                 dropdown.Populate();
                 UpdateContainer();
             }

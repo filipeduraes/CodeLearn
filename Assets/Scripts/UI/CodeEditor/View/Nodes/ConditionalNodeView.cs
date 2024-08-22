@@ -11,6 +11,16 @@ namespace CodeLearn.UI.CodeEditor.View
         [SerializeField] private NodeContainer conditionContainer;
         [SerializeField] private NodeContainer codeBlockContainer;
 
+        protected override NodeContainer ChildContainer => codeBlockContainer;
+        
+        public override bool TryApplyNodeView()
+        {
+            conditionContainer.SetParentNode(this);
+            codeBlockContainer.SetParentNode(this);
+            
+            return base.TryApplyNodeView();
+        }
+
         public GetNodeResult TryGetNode()
         {
             GetNodeResult conditionResult = conditionContainer.TryGetNode();

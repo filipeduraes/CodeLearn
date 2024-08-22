@@ -11,8 +11,14 @@ namespace CodeLearn.UI.CodeEditor.View
         [SerializeField] private NodeType nodeType;
         [SerializeField] private bool checkHorizontal;
 
-        public RectTransform ContainerParent => containerParent;
+        private RectTransform ContainerParent => containerParent;
         public NodeType NodeType => nodeType;
+        private NodeView ParentNode { get; set; }
+
+        public void SetParentNode(NodeView parentNode)
+        {
+            ParentNode = parentNode;
+        }
 
         public void SetNodeType(NodeType type)
         {
@@ -104,16 +110,19 @@ namespace CodeLearn.UI.CodeEditor.View
             return null;
         }
 
-        public void FitNodeView(Transform nodeView, Vector2 mousePosition)
+        public void FitNodeView(NodeView nodeView, Vector2 mousePosition)
         {
             Func<float> getMousePosition = checkHorizontal ? () => mousePosition.x : () => mousePosition.y;
             Func<int, float> getChildPosition = checkHorizontal ? index => ContainerParent.GetChild(index).position.x : index => ContainerParent.GetChild(index).position.y;
             
             int index = FindBestIndexForNodeView(getMousePosition, getChildPosition);
-            nodeView.SetParent(ContainerParent);
+            nodeView.SetOwningContainer(ContainerParent);
 
             if(index >= 0)
-                nodeView.SetSiblingIndex(index);
+                nodeView.transform.SetSiblingIndex(index);
+
+            if (ParentNode != null)
+                nodeView.SetParentNode(ParentNode);
         }
 
         private int FindBestIndexForNodeView(Func<float> getMousePosition, Func<int, float> getChildPosition)

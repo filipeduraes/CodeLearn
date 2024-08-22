@@ -51,7 +51,16 @@ namespace CodeLearn.UI.CodeEditor.ViewModel
 
         public static bool HasVariableAtLine(string key, int line)
         {
-            return HasVariable(key) && Variables[key].lineGetter() <= line;
+            if (!HasVariable(key)) 
+                return false;
+            
+            int variableLine = Variables[key].lineGetter();
+                
+            if (variableLine >= 0) 
+                return variableLine <= line;
+                
+            Variables.Remove(key);
+            return false;
         }
         
         public static bool HasVariable(string key)
