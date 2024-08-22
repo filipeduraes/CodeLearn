@@ -1,31 +1,29 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace CodeLearn.SnakeGame
 {
-    [Flags]
-    public enum SnakeBehaviors
-    {
-        Move = 1,
-        EatApple = 2,
-        Grow = 4,
-        Collide = 8,
-    }
-
     public class SnakeGame
     {
         public Vector2Int Direction { get; set; }
         public Vector2Int Apple { get; private set; }
         public List<Vector2Int> Snake { get; private set; }
-        private int _gridSize;
 
         public delegate void SnakeColliding();
         public static event SnakeColliding OnSnakeCollision = delegate { };
-
         public delegate void SnakeGrowing();
         public static event SnakeGrowing OnSnakeGrow = delegate { };
+
+        private int _gridSize;
+        private SnakeBehaviors _snakeBehaviors;
+
+
+        public void SetSnakeBehavior(SnakeBehaviors behavior)
+        {
+            _snakeBehaviors = behavior;
+        }
+
 
         public SnakeGame(List<Vector2Int> snakePositions,Vector2Int applePosition, int gridSize)
         {
@@ -50,13 +48,13 @@ namespace CodeLearn.SnakeGame
 
         private void CheckCollisions(Vector2Int headPosition)
         {
-            if (headPosition == Apple)
+            if (headPosition == Apple && (_snakeBehaviors & SnakeBehaviors.EatApple) != 0)
             {
                 GrowSnake();
                 RandomizeApple();
             }
 
-            if (Snake.Contains(headPosition) || IsOutsideBoard(headPosition))
+            if (Snake.Contains(headPosition) || IsOutsideBoard(headPosition) && (_snakeBehaviors & SnakeBehaviors.Collide) != 0)
             {
                 OnSnakeCollision();
             }
@@ -69,23 +67,29 @@ namespace CodeLearn.SnakeGame
 
         private void GrowSnake()
         {
-            Snake.Add(Snake[Snake.Count - 1]);
-            OnSnakeGrow();
+            if ((_snakeBehaviors & SnakeBehaviors.Grow) != 0)
+            {
+                Snake.Add(Snake[Snake.Count - 1]);
+                OnSnakeGrow();
+            }
         }
 
         private void RandomizeApple()
         {
-            int newAppleX = Random.Range(0, _gridSize);
-            int newAppleY = Random.Range(0, _gridSize);
-            Vector2Int newApple = new Vector2Int(newAppleX, newAppleY);
-
-            if (Snake.Contains(newApple))
+            if ((_snakeBehaviors & SnakeBehaviors.RandomizeApple) != 0)
             {
-                RandomizeApple();
-                return;
-            }
+                int newAppleX = Random.Range(0, _gridSize);
+                int newAppleY = Random.Range(0, _gridSize);
+                Vector2Int newApple = new Vector2Int(newAppleX, newAppleY);
 
-            Apple = newApple;
+                if (Snake.Contains(newApple))
+                {
+                    RandomizeApple();
+                    return;
+                }
+
+                Apple = newApple;
+            }
         }
     }
 }

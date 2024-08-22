@@ -12,6 +12,7 @@ namespace CodeLearn.SnakeGame
         [SerializeField] private Vector2Int snakeStartPosition;
         [SerializeField] private int snakeSize;
         [SerializeField] private Vector3 CentralizeOnGrid;
+        [SerializeField] private SnakeBehaviors SnakeBehaviors;
 
         private SnakeGame _snakeGame;
         private List<Vector2Int> snakePositionList = new List<Vector2Int>();
@@ -33,15 +34,26 @@ namespace CodeLearn.SnakeGame
             UpdateApplePosition();
         }
 
+        private void OnEnable()
+        {
+            SnakeGame.OnSnakeGrow += GrowSnake;
+        }
+
+        private void OnDisable()
+        {
+            SnakeGame.OnSnakeGrow -= GrowSnake;
+        }
+
         private void InstantiateNewSnakeGame()
         {
             for (int i = 0; i <= snakeSize - 2; i++)
             {
-                snakePositionList.Add(snakeStartPosition - new Vector2Int(i, 0) - new Vector2Int (1,1));
+                snakePositionList.Add(snakeStartPosition - new Vector2Int(i, 0) - Vector2Int.one);
                 snakeBody.UpdateSnakeGrow();
             }
 
-            _snakeGame = new SnakeGame(snakePositionList, appleStartPosition - new Vector2Int(1, 1), grid.GridSize);
+            _snakeGame = new SnakeGame(snakePositionList, appleStartPosition - Vector2Int.one, grid.GridSize);
+            _snakeGame.SetSnakeBehavior(SnakeBehaviors);
         }
 
         private void GrowSnake()
@@ -78,16 +90,6 @@ namespace CodeLearn.SnakeGame
                 Vector3 bodyPosition = grid.ConvertIndexToWorldPosition(_snakeGame.Snake[i]);
                 snakeBody.SnakeBodyLine.SetPosition(i, bodyPosition + CentralizeOnGrid);
             }
-        }
-
-        private void OnEnable()
-        {
-            SnakeGame.OnSnakeGrow += GrowSnake;
-        }
-
-        private void OnDisable()
-        {
-            SnakeGame.OnSnakeGrow -= GrowSnake;
         }
     }
 }

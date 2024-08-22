@@ -133,9 +133,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apple: {fileID: 7275284251461300478}
+  snakeBody: {fileID: 1685485710352008436}
   grid: {fileID: 2653370724642470321}
-  appleStartPosition: {x: 7, y: 4}
-  snakeStartPosition: {x: 5, y: 5}
+  appleStartPosition: {x: 8, y: 5}
+  snakeStartPosition: {x: 4, y: 5}
+  snakeSize: 3
+  CentralizeOnGrid: {x: 0.37, y: 0, z: 0}
+  SnakeBehaviors: -1
 --- !u!1 &3915992231995949243
 GameObject:
   m_ObjectHideFlags: 0
@@ -1376,7 +1380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df8b275a76842a4a9a237da34c28932, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snakeBody: {fileID: 2177240980647221834}
+  snakeBodyLine: {fileID: 2177240980647221834}
   head: {fileID: 8918303594961608952}
   tail: {fileID: 6695823013802542484}
 --- !u!1 &5942651319756865000
@@ -1592,6 +1596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cellSize: 1
+  gridSize: 10
 --- !u!1 &8844272398765572620
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,11 +1671,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: -4, y: -0.5, z: -1}
-  - {x: -5, y: -0.5, z: -1}
-  - {x: -6, y: -0.5, z: -1}
-  - {x: -7, y: -0.5, z: -1}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1

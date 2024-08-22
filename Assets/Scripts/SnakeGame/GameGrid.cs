@@ -5,8 +5,9 @@ namespace CodeLearn.SnakeGame
     public class GameGrid : MonoBehaviour
     {
         [SerializeField] private float cellSize = 1f;
+        [SerializeField] private int gridSize = 10;
 
-        public int GridSize { get; } = 10;
+        public int GridSize  => gridSize;
 
         public Vector3 ConvertIndexToWorldPosition(Vector2Int index)
         {
@@ -20,9 +21,9 @@ namespace CodeLearn.SnakeGame
         {
             Gizmos.color = Color.red;
 
-            for (int x = 0; x < 10; x++)
+            for (int x = 0; x < gridSize; x++)
             {
-                for (int y = 0; y < 10; y++)
+                for (int y = 0; y < gridSize; y++)
                 {
                     Vector2 center = ConvertIndexToWorldPosition(new Vector2Int(x, y));
                     Gizmos.DrawWireSphere(center,0.3f);
