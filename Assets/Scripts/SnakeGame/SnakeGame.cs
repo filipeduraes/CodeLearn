@@ -10,6 +10,8 @@ namespace CodeLearn.SnakeGame
         public Vector2Int Apple { get; private set; }
         public List<Vector2Int> Snake { get; private set; }
 
+        public bool CollidingApple { get; private  set; }
+
         public delegate void SnakeColliding();
         public static event SnakeColliding OnSnakeCollision = delegate { };
         public delegate void SnakeGrowing();
@@ -17,13 +19,6 @@ namespace CodeLearn.SnakeGame
 
         private int _gridSize;
         private SnakeBehaviors _snakeBehaviors;
-
-
-        public void SetSnakeBehavior(SnakeBehaviors behavior)
-        {
-            _snakeBehaviors = behavior;
-        }
-
 
         public SnakeGame(List<Vector2Int> snakePositions,Vector2Int applePosition, int gridSize)
         {
@@ -45,9 +40,32 @@ namespace CodeLearn.SnakeGame
 
             Snake[0] = newHead;
         }
+        public void RandomizeApple()
+        {
+            if ((_snakeBehaviors & SnakeBehaviors.RandomizeApple) != 0)
+            {
+                int newAppleX = Random.Range(0, _gridSize);
+                int newAppleY = Random.Range(0, _gridSize);
+                Vector2Int newApple = new Vector2Int(newAppleX, newAppleY);
+
+                if (Snake.Contains(newApple))
+                {
+                    RandomizeApple();
+                    return;
+                }
+
+                Apple = newApple;
+            }
+        }
+        public void SetSnakeBehavior(SnakeBehaviors behavior)
+        {
+            _snakeBehaviors = behavior;
+        }
 
         private void CheckCollisions(Vector2Int headPosition)
         {
+            CollidingApple = headPosition == Apple;
+
             if (headPosition == Apple && (_snakeBehaviors & SnakeBehaviors.EatApple) != 0)
             {
                 GrowSnake();
@@ -71,24 +89,6 @@ namespace CodeLearn.SnakeGame
             {
                 Snake.Add(Snake[Snake.Count - 1]);
                 OnSnakeGrow();
-            }
-        }
-
-        private void RandomizeApple()
-        {
-            if ((_snakeBehaviors & SnakeBehaviors.RandomizeApple) != 0)
-            {
-                int newAppleX = Random.Range(0, _gridSize);
-                int newAppleY = Random.Range(0, _gridSize);
-                Vector2Int newApple = new Vector2Int(newAppleX, newAppleY);
-
-                if (Snake.Contains(newApple))
-                {
-                    RandomizeApple();
-                    return;
-                }
-
-                Apple = newApple;
             }
         }
     }
