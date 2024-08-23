@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37396cafc968bf4994ebacf5a91e04f, type: 3}
-  m_Name: New Minigame Setup
+  m_Name: TestSetup
   m_EditorClassIdentifier: 
   variableDeclarations: []
   callableFunctions: []

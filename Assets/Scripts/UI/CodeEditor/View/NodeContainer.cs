@@ -2,6 +2,7 @@ using System;
 using CodeEditor.Nodes;
 using CodeLearn.CodeEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
@@ -122,7 +123,11 @@ namespace CodeLearn.UI.CodeEditor.View
                 nodeView.transform.SetSiblingIndex(index);
 
             if (ParentNode != null)
+            {
                 nodeView.SetParentNode(ParentNode);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(containerParent);
+            }
+            
         }
 
         public void FitNodeView(NodeView nodeView)

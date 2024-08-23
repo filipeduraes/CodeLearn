@@ -45,7 +45,7 @@ namespace CodeLearn.UI.CodeEditor.View
             _templateInstance.transform.position = eventData.position;
             _instanceCanvasGroup = _templateInstance.gameObject.AddComponent<CanvasGroup>();
             _instanceCanvasGroup.blocksRaycasts = false;
-            _instanceCanvasGroup.alpha = 0.6f;
+            _instanceCanvasGroup.alpha = 0.5f;
 
             ToolbarItem toolbarItem = _templateInstance.GetComponentInChildren<ToolbarItem>();
 

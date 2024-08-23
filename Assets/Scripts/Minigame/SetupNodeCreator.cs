@@ -7,7 +7,13 @@ namespace CodeLearn.Minigame
     {
         [SerializeField] private NodeContainer container;
         [SerializeField] private VariableDeclarationNodeView declarationNodeViewTemplate;
-        
+        [SerializeField] private MinigameSetup testSetup;
+
+        private void Awake()
+        {
+            Setup(testSetup);
+        }
+
         public void Setup(MinigameSetup setup)
         {
             foreach (VariableDeclaration variableDeclaration in setup.VariableDeclarations)
