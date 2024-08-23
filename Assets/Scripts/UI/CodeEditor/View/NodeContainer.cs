@@ -125,6 +125,14 @@ namespace CodeLearn.UI.CodeEditor.View
                 nodeView.SetParentNode(ParentNode);
         }
 
+        public void FitNodeView(NodeView nodeView)
+        {
+            nodeView.SetOwningContainer(ContainerParent);
+            
+            if (ParentNode != null)
+                nodeView.SetParentNode(ParentNode);
+        }
+
         private int FindBestIndexForNodeView(Func<float> getMousePosition, Func<int, float> getChildPosition)
         {
             if (ContainerParent.childCount == 0)

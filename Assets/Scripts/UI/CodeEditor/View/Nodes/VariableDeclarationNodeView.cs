@@ -45,6 +45,13 @@ namespace CodeLearn.UI.CodeEditor.View
         {
             return new GetNodeResult(new VariableDeclarationNode(_currentKey, _isNumeric ? 0f : false));
         }
+        
+        public void Populate(string variableName, bool isNumber)
+        {
+            variableNameInput.SetTextWithoutNotify(variableName);
+            _currentKey = variableName;
+            _isNumeric = isNumber;
+        }
 
         public override bool TryApplyNodeView()
         {
