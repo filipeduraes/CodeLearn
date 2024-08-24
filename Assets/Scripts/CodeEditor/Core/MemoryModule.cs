@@ -14,6 +14,21 @@ namespace CodeLearn.CodeEditor
             OnValueChanged(key, value);
         }
 
+        public bool TryGetValue<T>(string key, out T value)
+        {
+            if (_memoryValues.TryGetValue(key, out object storedValue))
+            {
+                if (storedValue is T convertedValue)
+                {
+                    value = convertedValue;
+                    return true;
+                }
+            }
+
+            value = default;
+            return false;
+        }
+
         public T GetValue<T>(string key)
         {
             return (T) _memoryValues[key];

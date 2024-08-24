@@ -6,9 +6,9 @@ namespace CodeLearn.UI.CodeEditor.ViewModel
 {
     public static class CodeEditorMemoryHolder
     {
-        private static readonly Dictionary<string, (Type variableType, Func<int> lineGetter)> Variables = new();
-
         public static event Action OnVariableListChanged = delegate { };
+        
+        private static readonly Dictionary<string, (Type variableType, Func<int> lineGetter)> Variables = new();
 
         public static void SetVariable(string lastKey, string newKey, Func<int> lineGetter, Type variableType)
         {

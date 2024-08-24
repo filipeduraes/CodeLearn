@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using CodeLearn.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,12 +12,10 @@ namespace CodeLearn.SnakeGame
         public Vector2Int Apple { get; private set; }
         public List<Vector2Int> Snake { get; private set; }
 
-        public bool CollidingApple { get; private  set; }
+        public NotifiedProperty<bool> CollidingApple { get; private set; }
 
-        public delegate void SnakeColliding();
-        public static event SnakeColliding OnSnakeCollision = delegate { };
-        public delegate void SnakeGrowing();
-        public static event SnakeGrowing OnSnakeGrow = delegate { };
+        public event Action OnSnakeCollision = delegate { };
+        public event Action OnSnakeGrow = delegate { };
 
         private int _gridSize;
         private SnakeBehaviors _snakeBehaviors;
@@ -64,7 +64,7 @@ namespace CodeLearn.SnakeGame
 
         private void CheckCollisions(Vector2Int headPosition)
         {
-            CollidingApple = headPosition == Apple;
+            CollidingApple.Set(headPosition == Apple);
 
             if (headPosition == Apple && (_snakeBehaviors & SnakeBehaviors.EatApple) != 0)
             {

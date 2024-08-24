@@ -36,12 +36,12 @@ namespace CodeLearn.SnakeGame
 
         private void OnEnable()
         {
-            SnakeGame.OnSnakeGrow += GrowSnake;
+            SnakeTheGame.OnSnakeGrow += GrowSnake;
         }
 
         private void OnDisable()
         {
-            SnakeGame.OnSnakeGrow -= GrowSnake;
+            SnakeTheGame.OnSnakeGrow -= GrowSnake;
         }
 
         private void InstantiateNewSnakeGame()
