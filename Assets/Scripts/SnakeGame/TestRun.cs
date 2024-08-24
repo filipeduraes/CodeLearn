@@ -40,6 +40,5 @@ namespace CodeLearn.SnakeGame
                 snakeGameView.SnakeTheGame.Tick();
             }
         }
-
     }
 }

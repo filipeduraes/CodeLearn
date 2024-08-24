@@ -1,21 +1,80 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Video;
 
 namespace CodeLearn.Tutorial
 {
     public class VideoPlayerController : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        [SerializeField] private Canvas canvas;
+        [SerializeField] private VideoPlayer videoPlayer;
+        [SerializeField] private Material playButtonMaterial;
+        [SerializeField] private Material pauseBottonMaterial;
+        [SerializeField] private RawImage playPauseButton;
+
+        private void OnEnable()
         {
-        
+            PlayPauseButton.OnPlayPause += PlayPause;
+            SkipButton.OnSkipPress += Skip;
+            TutorialButton.OnTutorialPress += ReWatchTutorial;
+            videoPlayer.loopPointReached += PlayAgain;
         }
 
-        // Update is called once per frame
-        void Update()
+        private void OnDisable()
         {
-        
+            PlayPauseButton.OnPlayPause -= PlayPause;
+            SkipButton.OnSkipPress -= Skip;
+            TutorialButton.OnTutorialPress -= ReWatchTutorial;
+            videoPlayer.loopPointReached -= PlayAgain;
+        }
+
+        private void Update()
+        {
+            UpdatePlayPauseButton();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                PlayPause();
+            }
+        }
+
+        private void UpdatePlayPauseButton()
+        {
+            if (videoPlayer.isPlaying)
+            {
+                playPauseButton.material = playButtonMaterial;
+            }
+            else
+            {
+                playPauseButton.material = pauseBottonMaterial;
+            }
+        }
+
+        private void PlayPause()
+        {
+            if (videoPlayer.isPlaying)
+            {
+                videoPlayer.Pause();
+            }
+            else
+            {
+                videoPlayer.Play();
+            }
+        }
+
+        private void PlayAgain(VideoPlayer source)
+        {
+            playPauseButton.material = playButtonMaterial;
+        }
+
+        private void Skip()
+        {
+            canvas.gameObject.SetActive(false);
+        }
+
+        private void ReWatchTutorial()
+        {
+            canvas.gameObject.SetActive(enabled);
         }
     }
 }
