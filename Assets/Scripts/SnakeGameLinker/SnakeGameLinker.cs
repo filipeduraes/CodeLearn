@@ -24,6 +24,7 @@ namespace CodeLearn.SnakeGame.Linker
             linker.SubscribeSignalReceiver(DirectionX, UpdateDirectionX);
             linker.SubscribeSignalReceiver(DirectionY, UpdateDirectionY);
             memoryModule.StoreValue(RandomizeAppleFunction, new Action(snakeGame.RandomizeApple));
+            memoryModule.StoreValue(CollidingAppleKey, false);
             
             _snakeGame.CollidingApple.OnValueChanged += UpdateCollidingApple;
         }

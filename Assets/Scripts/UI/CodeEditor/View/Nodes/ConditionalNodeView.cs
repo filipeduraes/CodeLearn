@@ -20,6 +20,11 @@ namespace CodeLearn.UI.CodeEditor.View
             
             return base.TryApplyNodeView();
         }
+        
+        public bool IgnoreCompilation()
+        {
+            return false;
+        }
 
         public GetNodeResult TryGetNode()
         {

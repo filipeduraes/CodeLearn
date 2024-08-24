@@ -9,10 +9,10 @@ namespace CodeLearn.Utils
 
         public void Set(T value)
         {
-            _value = value;
-
             if (!value.Equals(_value))
-                OnValueChanged(_value);
+                OnValueChanged(value);
+            
+            _value = value;
         }
 
         public T Get()

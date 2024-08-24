@@ -3,5 +3,6 @@
     public interface IBaseNodeView
     {
         GetNodeResult TryGetNode();
+        bool IgnoreCompilation();
     }
 }

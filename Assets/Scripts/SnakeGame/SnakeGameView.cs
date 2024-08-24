@@ -5,60 +5,58 @@ namespace CodeLearn.SnakeGame
 {
     public class SnakeGameView : MonoBehaviour
     {
-        public SnakeGame SnakeTheGame { get; set; }
-
+        [Header("References")]
         [SerializeField] private Transform apple;
         [SerializeField] private SnakeBody snakeBody;
         [SerializeField] private GameGrid grid;
+        
+        [Header("Initial Setup")]
         [SerializeField] private Vector2Int appleStartPosition;
         [SerializeField] private Vector2Int snakeStartPosition;
         [SerializeField] private int snakeSize;
         [SerializeField] private Vector3 centralizeOnGrid;
         [SerializeField] private SnakeBehaviors snakeBehaviors;
 
-        private List<Vector2Int> snakePosition = new List<Vector2Int>();
+        public SnakeGame SnakeTheGame { get; private set; }
+        
+        private readonly List<Vector2Int> _snakePosition = new();
 
         private void Awake()
         {
-            InstantiateNewSnakeGame();
-        }
-
-        private void Start()
-        {
+            InitializeSnakeGame();
             UpdateSnakePosition();
+            UpdateApplePosition();
         }
-
-        private void Update()
+        
+        public void Tick()
         {
+            SnakeTheGame.Tick();
             UpdateSnakePosition();
             UpdateApplePosition();
         }
 
-        private void OnEnable()
+        public void ResetGame()
         {
-            SnakeTheGame.OnSnakeGrow += GrowSnake;
+            _snakePosition.Clear();
+            
+            for (int i = 0; i < snakeSize - 1; i++)
+                _snakePosition.Add(snakeStartPosition - Vector2Int.right * i - Vector2Int.one);
+
+            SnakeTheGame.Direction = Vector2Int.zero;
+            SnakeTheGame.SetApplePosition(appleStartPosition - Vector2Int.one);
+            UpdateSnakePosition();
+            UpdateApplePosition();
         }
 
-        private void OnDisable()
-        {
-            SnakeTheGame.OnSnakeGrow -= GrowSnake;
-        }
-
-        private void InstantiateNewSnakeGame()
+        private void InitializeSnakeGame()
         {
             for (int i = 0; i < snakeSize - 1; i++)
-            {
-                snakePosition.Add(snakeStartPosition - new Vector2Int(i, 0) - Vector2Int.one);
-            }
+                _snakePosition.Add(snakeStartPosition - new Vector2Int(i, 0) - Vector2Int.one);
 
-            SnakeTheGame = new SnakeGame(snakePosition, appleStartPosition - Vector2Int.one, grid.GridSize);
+            SnakeTheGame = new SnakeGame(_snakePosition, appleStartPosition - Vector2Int.one, grid.GridSize);
             SnakeTheGame.SetSnakeBehavior(snakeBehaviors);
         }
-
-        private void GrowSnake()
-        {
-            snakePosition.Add(snakePosition[snakePosition.Count - 1]);
-        }
+        
         private void UpdateApplePosition()
         {
             apple.position = grid.ConvertIndexToWorldPosition(SnakeTheGame.Apple);

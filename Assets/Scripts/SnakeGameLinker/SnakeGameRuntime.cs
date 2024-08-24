@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeLearn.CodeEditor;
+using CodeLearn.UI.CodeEditor.ViewModel;
 using UnityEngine;
 
 namespace CodeLearn.SnakeGame.Linker
@@ -6,10 +7,25 @@ namespace CodeLearn.SnakeGame.Linker
     public class SnakeGameRuntime : MonoBehaviour
     {
         [SerializeField] private SnakeGameView snakeGameView;
-
-        private void Awake()
+        [SerializeField] private CodeEditorCompiler compiler;
+        
+        private void OnEnable()
         {
-            //new SnakeGameLinker(snakeGameView.SnakeTheGame, )
+            compiler.OnCompile += Link;
+            compiler.OnInterpreterLoop += snakeGameView.Tick;
+            compiler.OnExecutionStopped += snakeGameView.ResetGame;
+        }
+
+        private void OnDisable()
+        {
+            compiler.OnCompile -= Link;
+            compiler.OnInterpreterLoop -= snakeGameView.Tick;
+            compiler.OnExecutionStopped -= snakeGameView.ResetGame;
+        }
+        
+        private void Link(MemoryModule memoryModule)
+        {
+            SnakeGameLinker _ = new(snakeGameView.SnakeTheGame, memoryModule);
         }
     }
 }

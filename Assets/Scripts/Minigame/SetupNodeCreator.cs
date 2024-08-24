@@ -21,6 +21,7 @@ namespace CodeLearn.Minigame
                 VariableDeclarationNodeView declarationNodeViewInstance = Instantiate(declarationNodeViewTemplate);
                 declarationNodeViewInstance.Populate(variableDeclaration.Name, variableDeclaration.Type == VariableDeclaration.VariableType.Numeric);
                 container.FitNodeView(declarationNodeViewInstance);
+                declarationNodeViewInstance.TryApplyNodeView();
             }
         }
     }
