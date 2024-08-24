@@ -8,6 +8,7 @@ namespace CodeLearn.SnakeGame.Linker
     {
         [SerializeField] private SnakeGameView snakeGameView;
         [SerializeField] private CodeEditorCompiler compiler;
+        [SerializeField] private SnakeGameInputModule inputModule;
         
         private void OnEnable()
         {
@@ -25,7 +26,7 @@ namespace CodeLearn.SnakeGame.Linker
         
         private void Link(MemoryModule memoryModule)
         {
-            SnakeGameLinker _ = new(snakeGameView.SnakeTheGame, memoryModule);
+            SnakeGameLinker _ = new(snakeGameView.SnakeTheGame, inputModule, memoryModule);
         }
     }
 }

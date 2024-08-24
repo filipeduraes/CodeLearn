@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace CodeLearn.Minigame
@@ -6,9 +7,7 @@ namespace CodeLearn.Minigame
     public class MinigameSetup : ScriptableObject
     {
         [SerializeField] private VariableDeclaration[] variableDeclarations;
-        [SerializeField] private string[] callableFunctions;
 
-        public VariableDeclaration[] VariableDeclarations => variableDeclarations;
-        public string[] CallableFunctions => callableFunctions;
+        public IEnumerable<VariableDeclaration> VariableDeclarations => variableDeclarations;
     }
 }

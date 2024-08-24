@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2488193777704581026}
   - component: {fileID: 180641232069091897}
   - component: {fileID: 5325489209251993729}
+  - component: {fileID: 7196723050163553469}
   m_Layer: 0
   m_Name: MinigameSystem
   m_TagString: Untagged
@@ -62,3 +63,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snakeGameView: {fileID: 0}
   compiler: {fileID: 0}
+  inputModule: {fileID: 7196723050163553469}
+--- !u!114 &7196723050163553469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6886627115348864099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d16629b8112433787f1f7691fb9f01b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
