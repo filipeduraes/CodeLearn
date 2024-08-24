@@ -1,4 +1,18 @@
 {
-	"name": "CodeLearn.SnakeGame",
-	"references":[ "GUID:24999d9abaa548e3828db6c28970a329" ]
+    "name": "CodeLearn.SnakeGame",
+    "rootNamespace": "",
+    "references": [
+        "GUID:24999d9abaa548e3828db6c28970a329",
+        "GUID:eb7f6736dcbfc27408973e9e202e98db",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -40,14 +40,7 @@ namespace CodeLearn.Tutorial
 
         private void UpdatePlayPauseButton()
         {
-            if (videoPlayer.isPlaying)
-            {
-                playPauseButton.material = pauseBottonMaterial;
-            }
-            else
-            {
-                playPauseButton.material = playButtonMaterial;
-            }
+            playPauseButton.material = videoPlayer.isPlaying ? playButtonMaterial : pauseBottonMaterial;
         }
 
         private void PlayPause()

@@ -10,23 +10,23 @@ namespace CodeLearn.SnakeGame
 
         private void Start()
         {
-            StartCoroutine(SlowUpdate());
+            //StartCoroutine(SlowUpdate());
         }
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.down)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.UpArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.down)
             {
                 snakeGameView.SnakeTheGame.Direction = Vector2Int.up;
             }
-            if (Input.GetKeyDown(KeyCode.DownArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.up)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.DownArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.up)
             {
                 snakeGameView.SnakeTheGame.Direction = Vector2Int.down;
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.right)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.LeftArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.right)
             {
                 snakeGameView.SnakeTheGame.Direction = Vector2Int.left;
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.left)
+            if (UnityEngine.Input.GetKeyDown(KeyCode.RightArrow) && snakeGameView.SnakeTheGame.Direction != Vector2Int.left)
             {
                 snakeGameView.SnakeTheGame.Direction = Vector2Int.right;
             }

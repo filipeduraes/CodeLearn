@@ -58,6 +58,7 @@ namespace CodeLearn.SnakeGame
                     }
 
                     Apple = newApple;
+                    CheckCollisions(Snake[0]);
                 }
 
                 break;
@@ -72,6 +73,15 @@ namespace CodeLearn.SnakeGame
         public void SetApplePosition(Vector2Int appleStartPosition)
         {
             Apple = appleStartPosition;
+        }
+        
+        public void GrowSnake()
+        {
+            if ((_snakeBehaviors & SnakeBehaviors.Grow) != 0)
+            {
+                Snake.Add(Snake[Snake.Count - 1]);
+                OnSnakeGrow();
+            }
         }
 
         private void CheckCollisions(Vector2Int headPosition)
@@ -93,15 +103,6 @@ namespace CodeLearn.SnakeGame
         private bool IsOutsideBoard(Vector2Int headPosition)
         {
             return headPosition.x < 0 || headPosition.y < 0 || headPosition.x >= _gridSize || headPosition.y >= _gridSize;
-        }
-
-        private void GrowSnake()
-        {
-            if ((_snakeBehaviors & SnakeBehaviors.Grow) != 0)
-            {
-                Snake.Add(Snake[Snake.Count - 1]);
-                OnSnakeGrow();
-            }
         }
     }
 }
