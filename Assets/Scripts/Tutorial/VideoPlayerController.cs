@@ -42,11 +42,11 @@ namespace CodeLearn.Tutorial
         {
             if (videoPlayer.isPlaying)
             {
-                playPauseButton.material = playButtonMaterial;
+                playPauseButton.material = pauseBottonMaterial;
             }
             else
             {
-                playPauseButton.material = pauseBottonMaterial;
+                playPauseButton.material = playButtonMaterial;
             }
         }
 
