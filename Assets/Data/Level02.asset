@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37396cafc968bf4994ebacf5a91e04f, type: 3}
-  m_Name: Level01
+  m_Name: Level02
   m_EditorClassIdentifier: 
   variableDeclarations:
   - type: 0
     name: DirecaoX
+  - type: 1
+    name: ColidindoComFruta
