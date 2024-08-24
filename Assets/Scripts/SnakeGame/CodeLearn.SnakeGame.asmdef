@@ -1,3 +1,4 @@
 {
-	"name": "CodeLearn.SnakeGame"
+	"name": "CodeLearn.SnakeGame",
+	"references":[ "GUID:24999d9abaa548e3828db6c28970a329" ]
 }

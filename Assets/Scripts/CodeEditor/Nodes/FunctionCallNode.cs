@@ -5,16 +5,17 @@ namespace CodeEditor.Nodes
 {
     public class FunctionCallNode : ICodeNode
     {
-        private readonly Action<MemoryModule> _functionCall;
+        private readonly string _key;
 
-        public FunctionCallNode(Action<MemoryModule> functionCall)
+        public FunctionCallNode(string key)
         {
-            _functionCall = functionCall;
+            _key = key;
         }
         
         public void Execute(MemoryModule memoryModule)
         {
-            _functionCall(memoryModule);
+            if(memoryModule.TryGetValue(_key, out Action function))
+                function();
         }
     }
 }

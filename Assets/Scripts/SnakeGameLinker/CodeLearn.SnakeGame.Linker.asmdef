@@ -1,0 +1,11 @@
+﻿{
+  "name": "CodeLearn.SnakeGame.Linker",
+  "rootNamespace": "CodeLearn.SnakeGame.Linker",
+  "references": [
+    "GUID:bd3b0bc88f8d5f8428981e64b0d04b53",
+    "GUID:f0c1eed0a00e9364eae7f3493991d02c",
+    "GUID:d56738ed4ee7d624691082dee5d07cab",
+    "GUID:fc65402a96cc0084c8420217f3374c38",
+    "GUID:24999d9abaa548e3828db6c28970a329"
+  ]
+}

@@ -1,7 +1,9 @@
 using System;
 using CodeEditor.Nodes;
 using CodeLearn.CodeEditor;
+using CodeLearn.UI.CodeEditor.ViewModel;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace CodeLearn.UI.CodeEditor.View
 {
@@ -41,6 +43,11 @@ namespace CodeLearn.UI.CodeEditor.View
                 3 => HandleExpression(),
                 _ => new GetNodeResult(GetNodeResult.ErrorType.InvalidSyntax)
             };
+        }
+
+        public bool IgnoreCompilation()
+        {
+            return false;
         }
 
         private GetNodeResult HandleUnaryExpression()
@@ -102,9 +109,11 @@ namespace CodeLearn.UI.CodeEditor.View
 
         private ICodeNode GetVariableGetNode(GetVariableNodeView getVariableNodeView)
         {
-            if ((nodeType & NodeType.NumericValue) != 0)
+            Type variableType = CodeEditorMemoryHolder.GetVariableType(getVariableNodeView.Key);
+            
+            if (variableType == typeof(float))
                 return new VariableGetNode<float>(getVariableNodeView.Key);
-            if ((nodeType & NodeType.LogicValue) != 0)
+            if (variableType == typeof(bool))
                 return new VariableGetNode<bool>(getVariableNodeView.Key);
 
             return null;
@@ -121,6 +130,18 @@ namespace CodeLearn.UI.CodeEditor.View
             if(index >= 0)
                 nodeView.transform.SetSiblingIndex(index);
 
+            if (ParentNode != null)
+            {
+                nodeView.SetParentNode(ParentNode);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(containerParent);
+            }
+            
+        }
+
+        public void FitNodeView(NodeView nodeView)
+        {
+            nodeView.SetOwningContainer(ContainerParent);
+            
             if (ParentNode != null)
                 nodeView.SetParentNode(ParentNode);
         }

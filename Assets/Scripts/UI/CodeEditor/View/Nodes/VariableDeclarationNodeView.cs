@@ -19,6 +19,7 @@ namespace CodeLearn.UI.CodeEditor.View
 
         private bool _isNumeric = true;
         private string _currentKey;
+        private bool _ignoreCompilation = false;
 
         private void OnEnable()
         {
@@ -44,6 +45,22 @@ namespace CodeLearn.UI.CodeEditor.View
         public GetNodeResult TryGetNode()
         {
             return new GetNodeResult(new VariableDeclarationNode(_currentKey, _isNumeric ? 0f : false));
+        }
+
+        public bool IgnoreCompilation()
+        {
+            return _ignoreCompilation;
+        }
+
+        public void Populate(string variableName, bool isNumber)
+        {
+            variableNameInput.SetTextWithoutNotify(variableName);
+            _currentKey = variableName;
+            _isNumeric = isNumber;
+            
+            CodeEditorMemoryHolder.SetVariable(_currentKey, _currentKey, () => InitialIndex, _isNumeric ? typeof(float) : typeof(bool));
+            UpdateButtons();
+            _ignoreCompilation = true;
         }
 
         public override bool TryApplyNodeView()

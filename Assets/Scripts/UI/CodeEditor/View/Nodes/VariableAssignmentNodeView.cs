@@ -57,6 +57,11 @@ namespace CodeLearn.UI.CodeEditor.View
             return new GetNodeResult(GetNodeResult.ErrorType.VariableNotDeclared);
         }
 
+        public bool IgnoreCompilation()
+        {
+            return false;
+        }
+
         private void UpdateContainer()
         {
             if (TryGetVariableType(out Type variableType))
