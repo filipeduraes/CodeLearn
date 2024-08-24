@@ -43,10 +43,6 @@ namespace CodeLearn.SnakeGame
             SnakeBodyLine.textureScale = textureScale;
         }
 
-
-
-
-
         public void InstantiateBody(List<Vector3> bodyPositions)
         {
             _snakeLineRendererBody.Add(snakeBodyLine);
@@ -80,10 +76,12 @@ namespace CodeLearn.SnakeGame
 
         public void ResetBody()
         {
-            for (int i = 0; i < _snakeLineRendererBody.Count; i++)
+            for (int i = 1; i < _snakeLineRendererBody.Count; i++)
             {
                 Destroy(_snakeLineRendererBody[i].gameObject);
             }
+            
+            _snakeLineRendererBody.Clear();
         }
     }
 }

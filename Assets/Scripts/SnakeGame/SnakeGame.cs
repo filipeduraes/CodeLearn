@@ -13,7 +13,6 @@ namespace CodeLearn.SnakeGame
         public List<Vector2Int> Snake { get; private set; }
         public NotifiedProperty<bool> CollidingApple { get; } = new();
 
-        public event Action OnSnakeCollision = delegate { };
         public event Action OnSnakeGrow = delegate { };
 
         private SnakeBehaviors _snakeBehaviors;
@@ -45,21 +44,18 @@ namespace CodeLearn.SnakeGame
         {
             while (true)
             {
-                if ((_snakeBehaviors & SnakeBehaviors.RandomizeApple) != 0)
+                int newAppleX = Random.Range(0, _gridSize);
+                int newAppleY = Random.Range(0, _gridSize);
+
+                Vector2Int newApple = new(newAppleX, newAppleY);
+
+                if (Snake.Contains(newApple))
                 {
-                    int newAppleX = Random.Range(0, _gridSize);
-                    int newAppleY = Random.Range(0, _gridSize);
-
-                    Vector2Int newApple = new(newAppleX, newAppleY);
-
-                    if (Snake.Contains(newApple))
-                    {
-                        continue;
-                    }
-
-                    Apple = newApple;
-                    CheckCollisions(Snake[0]);
+                    continue;
                 }
+
+                Apple = newApple;
+                CheckCollisions(Snake[0]);
 
                 break;
             }
@@ -77,27 +73,13 @@ namespace CodeLearn.SnakeGame
         
         public void GrowSnake()
         {
-            if ((_snakeBehaviors & SnakeBehaviors.Grow) != 0)
-            {
-                Snake.Add(Snake[Snake.Count - 1]);
-                OnSnakeGrow();
-            }
+            Snake.Add(Snake[Snake.Count - 1]);
+            OnSnakeGrow();
         }
 
         private void CheckCollisions(Vector2Int headPosition)
         {
             CollidingApple.Set(headPosition == Apple);
-
-            if (headPosition == Apple && (_snakeBehaviors & SnakeBehaviors.EatApple) != 0)
-            {
-                GrowSnake();
-                RandomizeApple();
-            }
-
-            if (Snake.Contains(headPosition) || IsOutsideBoard(headPosition) && (_snakeBehaviors & SnakeBehaviors.Collide) != 0)
-            {
-                OnSnakeCollision();
-            }
         }
 
         private bool IsOutsideBoard(Vector2Int headPosition)

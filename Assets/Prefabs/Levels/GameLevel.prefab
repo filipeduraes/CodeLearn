@@ -770,6 +770,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
+      propertyPath: snakeBehaviors
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6749108301615775729, guid: 6cf1c22816da79443883d9b6a2870b81, type: 3}
       propertyPath: centralizeOnGrid.x
       value: -0.37
       objectReference: {fileID: 0}
@@ -962,11 +966,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1290098447970510366, guid: f4e46e58dd4d93f4ba99baadd2537f76, type: 3}
       propertyPath: m_Size
-      value: 0.99999994
+      value: 0.9999999
       objectReference: {fileID: 0}
     - target: {fileID: 1290098447970510366, guid: f4e46e58dd4d93f4ba99baadd2537f76, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1385247136440480158, guid: f4e46e58dd4d93f4ba99baadd2537f76, type: 3}
       propertyPath: m_AnchorMax.x

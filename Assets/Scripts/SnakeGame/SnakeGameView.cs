@@ -50,8 +50,8 @@ namespace CodeLearn.SnakeGame
 
         public void ResetGame()
         {
-            snakeBody.ResetBody();
             _snakePosition.Clear();
+            snakeBody.ResetBody();
             InitializeBody();
 
             SnakeTheGame.Direction = Vector2Int.zero;
