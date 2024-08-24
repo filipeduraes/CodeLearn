@@ -21,26 +21,38 @@ namespace CodeLearn.SnakeGame
         
         private readonly List<Vector2Int> _snakePosition = new();
 
+        private List<LineRenderer> _snakeLineRendererBody = new();
+
         private void Awake()
         {
             InitializeSnakeGame();
             UpdateSnakePosition();
             UpdateApplePosition();
         }
-        
+
+        private void OnEnable()
+        {
+            SnakeTheGame.OnSnakeGrow += snakeBody.GrowSnakeBody;
+        }
+
+        private void OnDisable()
+        {
+            SnakeTheGame.OnSnakeGrow -= snakeBody.GrowSnakeBody;
+        }
+
         public void Tick()
         {
             SnakeTheGame.Tick();
             UpdateSnakePosition();
             UpdateApplePosition();
+            //snakeBody.UpdateSnakeBody();
         }
 
         public void ResetGame()
         {
+            snakeBody.ResetBody();
             _snakePosition.Clear();
-            
-            for (int i = 0; i < snakeSize - 1; i++)
-                _snakePosition.Add(snakeStartPosition - Vector2Int.right * i - Vector2Int.one);
+            InitializeBody();
 
             SnakeTheGame.Direction = Vector2Int.zero;
             SnakeTheGame.SetApplePosition(appleStartPosition - Vector2Int.one);
@@ -50,13 +62,24 @@ namespace CodeLearn.SnakeGame
 
         private void InitializeSnakeGame()
         {
-            for (int i = 0; i < snakeSize - 1; i++)
-                _snakePosition.Add(snakeStartPosition - new Vector2Int(i, 0) - Vector2Int.one);
+            InitializeBody();
 
             SnakeTheGame = new SnakeGame(_snakePosition, appleStartPosition - Vector2Int.one, grid.GridSize);
             SnakeTheGame.SetSnakeBehavior(snakeBehaviors);
         }
-        
+
+        private void InitializeBody()
+        {
+            List<Vector3> bodyPositions = new();
+            for (int i = 0; i < snakeSize - 1; i++)
+            {
+                _snakePosition.Add(snakeStartPosition - Vector2Int.right * i - Vector2Int.one);
+                bodyPositions.Add(grid.ConvertIndexToWorldPosition(_snakePosition[i]));
+            }
+
+            snakeBody.InstantiateBody(bodyPositions);
+        }
+
         private void UpdateApplePosition()
         {
             apple.position = grid.ConvertIndexToWorldPosition(SnakeTheGame.Apple);
@@ -64,21 +87,14 @@ namespace CodeLearn.SnakeGame
 
         private void UpdateSnakePosition()
         {
-            snakeBody.SnakeBodyLine.positionCount = SnakeTheGame.Snake.Count * 2 - 1;
-
-            for (int i = 0; i < SnakeTheGame.Snake.Count; i++)
+            for (int i = 0; i < SnakeTheGame.Snake.Count - 1; i++)
             {
                 Vector3 bodyPosition = grid.ConvertIndexToWorldPosition(SnakeTheGame.Snake[i]);
-                Vector3 currentPoint = bodyPosition + centralizeOnGrid;
-                snakeBody.SnakeBodyLine.SetPosition(i * 2, bodyPosition + centralizeOnGrid);
+                Vector3 nextBodyPosition = grid.ConvertIndexToWorldPosition(SnakeTheGame.Snake[i + 1]);
+                bodyPosition += centralizeOnGrid;
+                nextBodyPosition += centralizeOnGrid;
 
-                if(i != SnakeTheGame.Snake.Count - 1)
-                {
-                    Vector3 nextBodyPosition = grid.ConvertIndexToWorldPosition(SnakeTheGame.Snake[i + 1]);
-                    Vector3 nextPoint = nextBodyPosition + centralizeOnGrid;
-                    Vector3 smoothPoint = Vector3.Lerp(currentPoint, nextPoint, 0.5f);
-                    snakeBody.SnakeBodyLine.SetPosition(i * 2 + 1, smoothPoint);
-                }
+                snakeBody.UpdateBodyLine(i, bodyPosition, nextBodyPosition);
             }
         }
     }
